@@ -9,4 +9,4 @@ COPY --from=builder /app/out/bot /app/bot
 COPY --from=builder /app/.env /app/.env
 WORKDIR /app
 EXPOSE 4853
-CMD ["bot"]
+CMD ["./bot"]
