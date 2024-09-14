@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"sync"
 
 	"github.com/AnimeKaizoku/cacher"
 	"gorm.io/driver/sqlite"
@@ -25,6 +26,8 @@ type SessionGroup struct {
 var sessionCache = cacher.NewCacher[string, *Session](nil)
 var userCache = cacher.NewCacher[int64, string](nil)
 
+var mu = sync.Mutex{}
+
 func generateSessionId() string {
 	t := make([]byte, 5)
 	rand.Read(t)
@@ -44,6 +47,8 @@ func NewSession(flag string) string {
 	sessionCache.Set(sessionId, &w)
 	tx := SESSION.Begin()
 	tx.Create(&w)
+	mu.Lock()
+	defer mu.Unlock()
 	tx.Commit()
 	return sessionId
 }
@@ -67,6 +72,8 @@ func AddUserToSession(sessionId string, userId int64) {
 	w := SessionGroup{SessionId: sessionId, UserId: userId}
 	tx := SESSION.Begin()
 	tx.Create(&w)
+	mu.Lock()
+	defer mu.Unlock()
 	tx.Commit()
 }
 
