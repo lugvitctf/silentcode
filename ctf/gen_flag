@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# api key url and key subjected to change
+curl "https://stuxctfc0d.vscode.in/new?api_key=keyxatecmpcvtfapitlhisfor&flag=$1" >> /root/question/README.txt
