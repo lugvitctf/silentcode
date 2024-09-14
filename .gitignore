@@ -2,25 +2,25 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 # Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+backend_bot/*.exe
+backend_bot/*.exe~
+backend_bot/*.dll
+backend_bot/*.so
+backend_bot/*.dylib
 
 # Test binary, built with `go test -c`
-*.test
+backend_bot/*.test
 
 # Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+backend_bot/*.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+# backend_bot/vendor/
 
 # Go workspace file
-go.work
-go.work.sum
+backend_bot/go.work
+backend_bot/go.work.sum
 
 # env file
 .env
-user.db
+backend_bot/user.db
